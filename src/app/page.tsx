@@ -1,113 +1,251 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import Header from "./components/Header";
 import Image from "next/image";
+import slid1 from "@/assets/images/slid-1.jpg";
+import slid2 from "@/assets/images/slid-2.jpg";
+import slid3 from "@/assets/images/slid-3.jpg";
+
+import slaad from "@/assets/images/Salad.jpg";
+import opre1 from "@/assets/images/oper1.jpg";
+import opre2 from "@/assets/images/oper2.jpg";
+import opre3 from "@/assets/images/oper3.jpg";
+import opre4 from "@/assets/images/oper4.jpg";
+import brand1 from "@/assets/images/brand1.png";
+import brand2 from "@/assets/images/brand2.png";
+import brand3 from "@/assets/images/brand3.png";
+import brand4 from "@/assets/images/brand4.jpg";
+import brand5 from "@/assets/images/brand5.jpg";
+import brand6 from "@/assets/images/brand6.jpg";
+import brand7 from "@/assets/images/brand2.png";
+import brand8 from "@/assets/images/brand8.png";
+import brand9 from "@/assets/images/brand9.png";
+import brand10 from "@/assets/images/brand10.png";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Footer from "./components/Footer";
+import Link from "next/link";
+
+
+
 
 export default function Home() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex2, setCurrentIndex2] = useState(0);
+  const images: any[] = [slid1, slid2, slid3];
+  const images2: any[] = [opre1, opre2, opre3,opre4];
+  
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    speed: 1000,
+    padding:'60px',
+    slidesToShow: 8,
+    slidesToScroll: 8,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 8,
+          slidesToScroll: 8,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
+
+
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="h-full ">
+    
+      <section className="md:mt-32 mt-10">
+        <div className="relative w-full md:h-[640px] overflow-hidden">
+          <div
+            className="absolute inset-0 flex transition-transform transform ease-in-out duration-500"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            {images.map((image, index) => (
+              <div key={index} className="w-full flex-shrink-0">
+                <Image
+                  src={image}
+                  className="w-full h-full object-cover"
+                  alt={`Slide ${index}`}
+                />
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
+          >
+            &lt;
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
+          >
+            &gt;
+          </button>
         </div>
-      </div>
+      </section>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+     
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <section className="">
+        <div className="grid grid-cols-1">
+          <div className="relative">
+            <Image src={slaad} alt="" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+              <span className="text-md text-orange-300">
+                With The Goodness of
+              </span>
+              <h2 className="text-4xl mt-2 mb-10 font-semibold text-black">
+                Canola & Rice Bran Oil
+              </h2>
+              <Link
+                href="product"
+                className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
+              >
+                Shop Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      <section>
+        <h1 className="text-4xl text-orange-500 text-center my-10">
+          Opera Crisps
+        </h1>
+        <div className="flex flex-col md:flex-row mt-24 justify-center text-center md:-mx-4 m-auto w-full">
+          <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
+            <Image src={opre1} alt="" />
+            <h4 className="text-xl font-bold">Salt & Black Pepper</h4>
+            <p className="mt-1 mb-3">55g</p>
+            <Link
+              href="product"
+              className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
+            >
+              Shop Now
+            </Link>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
+            <Image src={opre2} alt="" />
+            <h4 className="text-xl font-bold">Piri Piri</h4>
+            <p className="mt-1 mb-3">55g</p>
+            <Link
+              href="product"
+              className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
+            >
+              Shop Now
+            </Link>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
+            <Image src={opre3} alt="" />
+            <h4 className="text-xl font-bold">Cheese Jalapeno</h4>
+            <p className="mt-1 mb-3">55g</p>
+            <Link
+              href="product"
+              className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
+            >
+              Shop Now
+            </Link>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
+            <Image src={opre4} alt="" />
+            <h4 className="text-xl font-bold">Fiery Sriracha</h4>
+            <p className="mt-1 mb-3">55g</p>
+            <Link
+             href="product"
+              className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
+            >
+              Shop Now
+            </Link>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+      <section className="w-full my-24">
+      <div className="slider-container   mx-10 m-auto">
+      <Slider {...settings} className="items-center flex">
+        <div className="items-center flex" >
+          <Image src={brand1} alt="" />
+        </div>
+        <div className="items-center flex" >
+        <Image src={brand2} alt=""/>
+        </div>
+        <div className="items-center flex" >
+        <Image src={brand3} alt=""/>
+        </div>
+        <div className="items-center flex" >
+        <Image src={brand4}  alt=""/>
+        </div>
+        <div className="items-center flex">
+        <Image src={brand5} alt=""/>
+        </div>
+        <div >
+        <Image src={brand6} alt=""/>
+        </div>
+        <div className="items-center flex" >
+        <Image src={brand7} alt=""/>
+        </div>
+        <div className="items-center flex" >
+        <Image src={brand8} alt=""/>
+        </div>
+        <div >
+        <Image src={brand9} alt=""/>
+        </div>
+        <div className="items-center flex" >
+        <Image src={brand10} alt=""/>
+        </div>
+      </Slider>
+    </div>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+ 
+
+
     </main>
   );
 }
