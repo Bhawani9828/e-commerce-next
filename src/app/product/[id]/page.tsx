@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaSearchPlus } from "react-icons/fa";
-import { CartProvider, useCart } from "@/context/CartContext";
+import { useCart, CartProvider } from "@/context/CartContext";
 import Cart from "@/app/components/Cart";
-import { useParams } from 'next/navigation';
+import { useParams,useRouter } from 'next/navigation';
+
 
 interface Product {
   _id: string;
@@ -22,9 +23,8 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState<Product | null>(null);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [totalQuantity, setTotalQuantity] = useState(0);
-  const { addToCart, cart, removeFromCart, getTotalQuantity  } = useCart();
- 
+  const { cart, addToCart, updateQuantity, removeFromCart } = useCart();
+ const router = useRouter();
   const { id } = params;
 
   useEffect(() => {
@@ -32,15 +32,6 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
       fetchProduct(id);
     }
   }, [id]);
-  useEffect(() => {
-    if (product) {
-      const cartItem = cart.find(item => item._id === product._id);
-      if (cartItem) {
-        setQuantity(cartItem.quantity);
-      }
-    }
-  }, [cart, product]);
-
 
   const fetchProduct = async (id: string) => {
     setIsLoading(true);
@@ -72,14 +63,16 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
   };
 
   const handleAddToCart = () => {
-    if (product && quantity > 0) {
-      const currentQuantityInCart = cart.find(item => item._id === product._id)?.quantity || 0;
-      const quantityToAdd = quantity - currentQuantityInCart;
-      if (quantityToAdd > 0) {
-        addToCart(product, quantityToAdd);
-      }
-      setQuantity(1);  // Keep the quantity as is after adding to cart
+    if (product) {
+      addToCart(product, quantity);
+      setQuantity(1); // Reset quantity after adding to cart
+      setIsCheckoutOpen(true); // Open checkout modal if needed
     }
+  };
+  const handleBuyNow = () => {
+   
+      router.push('/checkout'); // Navigate to checkout page
+   
   };
 
   const handleRemoveFromCart = (productId: string) => {
@@ -103,7 +96,8 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div>
+    <CartProvider>
+ <div>
       <div className="container mx-auto p-6 mt-40">
         <div className="flex flex-col md:flex-row">
           <div className="flex-1 relative">
@@ -164,7 +158,7 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
                 <button className="border px-2" onClick={handleDecrement}>
                   -
                 </button>
-                <span className="px-2">{quantity}</span>
+                <span className="mx-2">{quantity}</span>
                 <button className="border px-2" onClick={handleIncrement}>
                   +
                 </button>
@@ -177,16 +171,16 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
               >
                 Add to Cart
               </button>
-              <span>Total Items in Cart: {getTotalQuantity()}</span>
               <button
                 className="bg-orange-500 text-white px-4 py-2"
-                onClick={handleOpenCheckout}
+                onClick={handleBuyNow}
               >
                 Buy Now
               </button>
             </div>
           </div>
         </div>
+        
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-4">You Might Also Like</h2>
           <div className="flex space-x-4 overflow-x-auto">
@@ -220,6 +214,8 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
         onRemove={handleRemoveFromCart}
       />
     </div>
+    </CartProvider>
+   
   );
 }
 

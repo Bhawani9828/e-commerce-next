@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCart } from "@/context/CartContext";
+import { CartProvider, useCart } from "@/context/CartContext";
 import Cart from "@/app/components/Cart";
 import { useSearchParams } from 'next/navigation';
 
@@ -133,7 +133,8 @@ const Page: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="container-xxl mt-40 mx-auto px-4">
+    <CartProvider>
+ <div className="container-xxl mt-40 mx-auto px-4">
       <section className="md:mt-40 mt-16">
         <div className="flex flex-col lg:flex-row">
           <aside className="w-full lg:w-1/4 p-4">
@@ -226,6 +227,8 @@ const Page: React.FC = () => {
         onRemove={removeFromCart}
       />
     </div>
+    </CartProvider>
+   
   );
 };
 

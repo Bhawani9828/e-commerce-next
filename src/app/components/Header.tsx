@@ -16,8 +16,8 @@ function Header() {
   let [isopen, setIsopen] = useState(false);
   const [isOpen1, setIsOpen1] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { getTotalQuantity } = useCart(); 
-  const totalQuantity = getTotalQuantity(); 
+  const { getTotalQuantity } = useCart();
+const totalQuantity = getTotalQuantity();
   const toggleDropdown = () => {
     setIsOpen1(!isOpen1);
   };
@@ -48,7 +48,7 @@ function Header() {
 
   return (
     <>
-      <div className="header fixed top-0 left-0 w-full z-[1027]">
+      <div className="header fixed top-0 left-0 w-full z-[1]">
         <div className="top_bannnar bg-orange-500 text-center p-2">
           <span className="text-white text-center text-md">
             Free Shipping above ₹299 | Get 100G Mayonnaise Free on order above
