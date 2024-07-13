@@ -14,13 +14,14 @@ export default function LoginPage() {
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
-  const onLogin = async () => {
+  const onLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
       console.log("Login success", response.data);
       toast.success("Login success");
-      router.push("/profile");
+      router.push("/  ");
     } catch (error: any) {
       console.log("Login failed", error.message);
       toast.error(error.message);
@@ -40,13 +41,12 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-     
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        {loading ? "Processing" : "Login"} in to your account
+          {loading ? "Processing" : "Login"} in to your account
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-6" onSubmit={onLogin}>
           <div>
             <label
               htmlFor="email"
@@ -100,7 +100,7 @@ export default function LoginPage() {
           <div>
             <button
               type="submit"
-              onClick={onLogin}
+              disabled={buttonDisabled}
               className="flex w-full justify-center rounded-md bg-orange-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
             >
               Sign in
@@ -108,14 +108,13 @@ export default function LoginPage() {
           </div>
         </form>
         <p className="mt-10 text-center text-sm text-gray-500">
-          Not a member?
+          Not a member?{" "}
           <Link
             href="/signup"
             className="font-semibold leading-6 text-orange-600 hover:text-orange-500"
           >
-          Visit Signup page
+            Visit Signup page
           </Link>
-        
         </p>
       </div>
     </div>

@@ -96,7 +96,7 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <CartProvider>
+    
  <div>
       <div className="container mx-auto p-6 mt-40">
         <div className="flex flex-col md:flex-row">
@@ -206,15 +206,16 @@ function ProductDetailPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
-
+      <CartProvider>
       <Cart
         cart={cart}
         isOpen={isCheckoutOpen}
         onClose={handleCloseCheckout}
         onRemove={handleRemoveFromCart}
       />
+        </CartProvider>
     </div>
-    </CartProvider>
+  
    
   );
 }
@@ -226,3 +227,7 @@ export default function WrappedProductDetailPage({ params }: { params: { id: str
     </CartProvider>
   );
 }
+
+
+
+    

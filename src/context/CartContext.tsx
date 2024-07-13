@@ -1,6 +1,7 @@
 "use client"; // Ensure this is at the top for Next.js
 
-import React, { createContext, useContext, useState, ReactNode, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback, useMemo, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 interface Product {
   _id: string;
@@ -28,6 +29,19 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  useEffect(() => {
+    // Load cart from cookies on component mount
+    const savedCart = Cookies.get('cart');
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save cart to cookies whenever it changes
+    Cookies.set('cart', JSON.stringify(cart), { expires: 7 });
+  }, [cart]);
+
   const addToCart = useCallback((product: Product, quantityToAdd: number) => {
     setCart((prevCart) => {
       const existingItemIndex = prevCart.findIndex((item) => item._id === product._id);
@@ -41,6 +55,8 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return [...prevCart, { ...product, quantity: quantityToAdd }];
       }
     });
+   // Save cart to cookies explicitly
+   Cookies.set('cart', JSON.stringify(cart), { expires: 7 });
   }, []);
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {

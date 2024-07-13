@@ -76,7 +76,16 @@
   align-items: center !important;
 }
 .parallax {
-  background-image: url('../assets/images/proller.webp');
+  background-image: url('../assets/images/about-banner.webp');
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  background-image: url('../assets/images/accessories_top_baner.webp');
   height: 500px;
   background-attachment: fixed;
   background-position: center;

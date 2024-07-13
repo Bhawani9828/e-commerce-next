@@ -79,25 +79,22 @@ const totalQuantity = getTotalQuantity();
                 isopen ? "top-32" : "top-[-490px]"
               }`}
             >
-              <li className="relative my-7 md:my-0 md:ml-8 group">
-                <div className="flex items-center cursor-pointer">
-                  <span className="text-orange-500">About us</span>
-                  <FaChevronDown className="group-hover:hidden ml-3 text-orange-500 w-7 h-3" />
-                  <FaChevronUp className="hidden group-hover:block ml-3 text-orange-500 w-7 h-3" />
-                </div>
-                <ul className="hidden group-hover:block absolute z-10 bg-white shadow-lg p-2 min-w-max">
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="/about">About the Company</Link>
-                  </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#"> Quality Policy</Link>
-                  </li>
-                </ul>
+                <li className="my-7 md:my-0 md:ml-8">
+                <Link href="/" className="text-orange-500">
+                  Home
+                </Link>
               </li>
+
+              <li className="my-7 md:my-0 md:ml-8">
+                <Link href="/about" className="text-orange-500">
+                  About us
+                </Link>
+              </li>
+             
 
               <li className="relative my-7 md:my-0 md:ml-8 group">
                 <div className="flex items-center cursor-pointer">
-                  <span className="text-orange-500">Shop Now</span>
+                  <span className="text-orange-500">Shop</span>
                   <FaChevronDown className="group-hover:hidden ml-3 text-orange-500 w-7 h-3" />
                   <FaChevronUp className="hidden group-hover:block ml-3 text-orange-500 w-7 h-3" />
                 </div>
@@ -106,44 +103,24 @@ const totalQuantity = getTotalQuantity();
                     <Link href="#">All</Link>
                   </li>
                   <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Woktok Sauces & Chutneys</Link>
+                    <Link href="#">Inline Skates</Link>
                   </li>
                   <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Mayonnaise</Link>
+                    <Link href="#">Ice Skates</Link>
                   </li>
                   <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Sandwich Spread</Link>
+                    <Link href="#">Protection</Link>
                   </li>
                   <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Pasta & Pizza Sauces</Link>
+                    <Link href="#">Whewls</Link>
                   </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Sauces</Link>
-                  </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Dressings</Link>
-                  </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Dips</Link>
-                  </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Peanut Spreads</Link>
-                  </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Sweet Toppings</Link>
-                  </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Ketchup</Link>
-                  </li>
-                  <li className="block p-2 text-orange-500 hover:text-black">
-                    <Link href="#">Chutneys</Link>
-                  </li>
+                 
                 </ul>
               </li>
 
               <li className="my-7 md:my-0 md:ml-8">
-                <Link href="/recipe" className="text-orange-500">
-                  Recipes
+                <Link href="/accessories" className="text-orange-500">
+                 Accessories
                 </Link>
               </li>
               <li className="my-7 md:my-0 md:ml-8">
@@ -156,23 +133,19 @@ const totalQuantity = getTotalQuantity();
                   Track Order
                 </Link>
               </li>
-              <li className="my-7 md:my-0 md:ml-8">
-                <Link href="" className="text-orange-500">
-                  International
-                </Link>
-              </li>
+              
 
-              <a
-                href="#_"
-                className="relative inline-flex items-center md:ml-8 justify-center px-5 py-2 text-lg font-medium tracking-tighter text-white bg-orange-500 rounded-md group"
+              <Link
+                href="/product"
+                className="relative inline-flex items-center md:ml-8 justify-center px-5 py-2 text-lg font-medium tracking-tighter text-white bg-[#17BEBB] rounded-md group"
               >
                 <span className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out bg-orange-500 rounded-md group-hover:mt-0 group-hover:ml-0"></span>
                 <span className="absolute inset-0 w-full h-full bg-white rounded-md "></span>
-                <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-orange-500 rounded-md opacity-0 group-hover:opacity-100 "></span>
+                <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 bg-[#17BEBB] rounded-md opacity-0 group-hover:opacity-100 "></span>
                 <span className="relative text-orange-500 transition-colors duration-200 ease-in-out delay-100 group-hover:text-white">
-                  Saga Food Service
+                  Products
                 </span>
-              </a>
+              </Link>
             </ul>
             <div className="hidden items-center md:flex">
               <div className="relative mr-2">

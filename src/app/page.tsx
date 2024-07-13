@@ -2,46 +2,54 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Image from "next/image";
-import slid1 from "@/assets/images/slid-1.jpg";
-import slid2 from "@/assets/images/slid-2.jpg";
-import slid3 from "@/assets/images/slid-3.jpg";
+import topSlider1 from "@/assets/images/topSlider1.webp";
+import topSlider2 from "@/assets/images/topSlider2.webp";
+import topSlider3 from "@/assets/images/topSlider3.webp";
+import topSlider4 from "@/assets/images/topSlider4.webp";
+import topSlider5 from "@/assets/images/topSlider5.webp";
 
-import slaad from "@/assets/images/Salad.jpg";
-import opre1 from "@/assets/images/oper1.jpg";
-import opre2 from "@/assets/images/oper2.jpg";
-import opre3 from "@/assets/images/oper3.jpg";
-import opre4 from "@/assets/images/oper4.jpg";
-import brand1 from "@/assets/images/brand1.png";
-import brand2 from "@/assets/images/brand2.png";
-import brand3 from "@/assets/images/brand3.png";
-import brand4 from "@/assets/images/brand4.jpg";
-import brand5 from "@/assets/images/brand5.jpg";
-import brand6 from "@/assets/images/brand6.jpg";
-import brand7 from "@/assets/images/brand2.png";
-import brand8 from "@/assets/images/brand8.png";
-import brand9 from "@/assets/images/brand9.png";
-import brand10 from "@/assets/images/brand10.png";
+import woman from "@/assets/images/categrory-woman-img.webp";
+import man from "@/assets/images/categrory-man-img.webp";
+import kids from "@/assets/images/categrory-kids-img.webp";
+import explor1 from "@/assets/images/explor1.jpg";
+import explor2 from "@/assets/images/explor2.jpg";
+import explor3 from "@/assets/images/explor3.jpg";
+import explor4 from "@/assets/images/explor1.jpg";
+import skate0 from "@/assets/images/skate0.jpg";
+import skate1 from "@/assets/images/skate1.jpg";
+import skate2 from "@/assets/images/skate2.jpg";
+import skate3 from "@/assets/images/skate3.jpg";
+import skate4 from "@/assets/images/skate4.jpg";
+import skate5 from "@/assets/images/skate5.jpg";
+import skate6 from "@/assets/images/skate6.jpg";
+import skate7 from "@/assets/images/skate7.jpg";
+import skate8 from "@/assets/images/skate8.jpg";
+import skate9 from "@/assets/images/skate9.jpg";
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "./components/Footer";
 import Link from "next/link";
 
-
-
-
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndex2, setCurrentIndex2] = useState(0);
-  const images: any[] = [slid1, slid2, slid3];
-  const images2: any[] = [opre1, opre2, opre3,opre4];
-  
+  const images: any[] = [
+    topSlider1,
+    topSlider2,
+    topSlider3,
+    topSlider4,
+    topSlider5,
+  ];
+  const images2: any[] = [explor1, explor2, explor3, explor4];
+
   const settings = {
     dots: true,
     infinite: true,
     autoplay: true,
     speed: 1000,
-    padding:'60px',
+    padding: "60px",
     slidesToShow: 8,
     slidesToScroll: 8,
     initialSlide: 0,
@@ -52,30 +60,27 @@ export default function Home() {
           slidesToShow: 8,
           slidesToScroll: 8,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
-
-
-  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
@@ -98,7 +103,6 @@ export default function Home() {
   };
   return (
     <main className="h-full ">
-    
       <section className="md:mt-32 mt-10">
         <div className="relative w-full md:h-[640px] overflow-hidden">
           <div
@@ -130,39 +134,38 @@ export default function Home() {
         </div>
       </section>
 
-     
-
       <section className="">
-        <div className="grid grid-cols-1">
-          <div className="relative">
-            <Image src={slaad} alt="" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-              <span className="text-md text-orange-300">
-                With The Goodness of
-              </span>
-              <h2 className="text-4xl mt-2 mb-10 font-semibold text-black">
-                Canola & Rice Bran Oil
-              </h2>
-              <Link
-                href="product"
-                className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
-              >
-                Shop Now
-              </Link>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 p-8 ">
+          <div className="">
+            <Link href="product">
+              <Image src={woman} alt="" className="w-full mb-2" layout="loading" />
+            </Link>
+            <h2 className="text-center w-full text-black font-semibold text-2xl">Woman</h2>
+          </div>
+          <div className="">
+            <Link href="product">
+              <Image src={man} alt="" className="w-full mb-2" layout="loading" />
+            </Link>
+            <h2 className="text-center w-full text-black font-semibold text-2xl">Woman</h2>
+          </div>
+          <div className="">
+            <Link href="product">
+              <Image src={kids} alt="" className="w-full mb-2" layout="loading" />
+            </Link>
+            <h2 className="text-center w-full text-black font-semibold text-2xl">Woman</h2>
           </div>
         </div>
       </section>
 
-      <section>
-        <h1 className="text-4xl text-orange-500 text-center my-10">
-          Opera Crisps
+      <section className="mt-24">
+        <h1 className="text-4xl text-orange-500 font-mono font-semibold text-start  px-12">
+        EXPLORE
         </h1>
-        <div className="flex flex-col md:flex-row mt-24 justify-center text-center md:-mx-4 m-auto w-full">
+        <div className="flex flex-col md:flex-row mt-3 md:gap-24 gap-8 justify-center text-center md:-mx-4 m-auto w-full">
           <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
-            <Image src={opre1} alt="" />
-            <h4 className="text-xl font-bold">Salt & Black Pepper</h4>
-            <p className="mt-1 mb-3">55g</p>
+            <Image src={explor1} alt="" className="w-full mb-2" layout="loading" />
+            <h4 className="text-xl font-bold mb-4">ROLLEROBICS</h4>
+            
             <Link
               href="product"
               className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
@@ -171,9 +174,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
-            <Image src={opre2} alt="" />
-            <h4 className="text-xl font-bold">Piri Piri</h4>
-            <p className="mt-1 mb-3">55g</p>
+            <Image src={explor2} alt="" className="w-full mb-2" layout="loading" />
+            <h4 className="text-xl font-bold mb-4">TRISKATES</h4>
+            
             <Link
               href="product"
               className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
@@ -182,9 +185,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
-            <Image src={opre3} alt="" />
-            <h4 className="text-xl font-bold">Cheese Jalapeno</h4>
-            <p className="mt-1 mb-3">55g</p>
+            <Image src={explor3} alt="" className="w-full mb-2" layout="loading" />
+            <h4 className="text-xl font-bold mb-4">TRINITY</h4>
+           
             <Link
               href="product"
               className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
@@ -193,11 +196,11 @@ export default function Home() {
             </Link>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 md:mx-4">
-            <Image src={opre4} alt="" />
-            <h4 className="text-xl font-bold">Fiery Sriracha</h4>
-            <p className="mt-1 mb-3">55g</p>
+            <Image src={explor4} alt="" className="w-full mb-2" layout="loading" />
+            <h4 className="text-xl font-bold mb-4">ROLLEROBICS</h4>
+            
             <Link
-             href="product"
+              href="product"
               className="btn py-2 px-5 rounded-lg text-white bg-orange-500 "
             >
               Shop Now
@@ -206,46 +209,43 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full my-24">
-      <div className="slider-container   mx-10 m-auto">
-      <Slider {...settings} className="items-center flex">
-        <div className="items-center flex" >
-          <Image src={brand1} alt="" />
+      <section className="w-full mt-24">
+        <div className="slider-container   mx-10 m-auto">
+          <Slider {...settings} className="items-center flex">
+          <div className="items-center flex">
+              <Image src={skate0} alt="" />
+            </div>
+            <div className="items-center flex">
+              <Image src={skate1} alt="" />
+            </div>
+            <div className="items-center flex">
+              <Image src={skate2} alt="" />
+            </div>
+            <div className="items-center flex">
+              <Image src={skate3} alt="" />
+            </div>
+            <div className="items-center flex">
+              <Image src={skate4} alt="" />
+            </div>
+            <div className="items-center flex">
+              <Image src={skate5} alt="" />
+            </div>
+            <div>
+              <Image src={skate6} alt="" />
+            </div>
+            <div className="items-center flex">
+              <Image src={skate7} alt="" />
+            </div>
+            <div className="items-center flex">
+              <Image src={skate8} alt="" />
+            </div>
+            <div>
+              <Image src={skate9} alt="" />
+            </div>
+            
+          </Slider>
         </div>
-        <div className="items-center flex" >
-        <Image src={brand2} alt=""/>
-        </div>
-        <div className="items-center flex" >
-        <Image src={brand3} alt=""/>
-        </div>
-        <div className="items-center flex" >
-        <Image src={brand4}  alt=""/>
-        </div>
-        <div className="items-center flex">
-        <Image src={brand5} alt=""/>
-        </div>
-        <div >
-        <Image src={brand6} alt=""/>
-        </div>
-        <div className="items-center flex" >
-        <Image src={brand7} alt=""/>
-        </div>
-        <div className="items-center flex" >
-        <Image src={brand8} alt=""/>
-        </div>
-        <div >
-        <Image src={brand9} alt=""/>
-        </div>
-        <div className="items-center flex" >
-        <Image src={brand10} alt=""/>
-        </div>
-      </Slider>
-    </div>
       </section>
-
- 
-
-
     </main>
   );
 }

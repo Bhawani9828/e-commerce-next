@@ -1,13 +1,13 @@
 import React from "react";
-import { MapPinIcon, PhoneIcon, } from "@heroicons/react/24/solid";
+import { MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FaFacebookF } from "react-icons/fa6";
-import { FaTwitter,FaInstagram } from "react-icons/fa";
+import { FaTwitter, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
 
 function Footer() {
   return (
     <div>
-      <footer className="footer md:mt-36 md:px-10 p-4 m-auto ">
+      <footer className="footer md:mt-32 md:px-10 p-4 m-auto ">
         <div className="grid grid-cols-1 md:grid-cols-4">
           <div className="p-4">
             <div className="mb-3">
@@ -41,26 +41,24 @@ function Footer() {
           </div>
 
           <div className="p-4">
-            <h1 className="text-3xl mb-3 font-semibold">Buy Now</h1>
+            <h1 className="text-3xl mb-3 font-semibold"> Segments</h1>
             <ul className="mb-5">
-              <li className="mb-3">Chataka</li>
-              <li className="mb-3">Tomato Ketchup</li>
-              <li className="mb-3">Opera Crisps</li>
-              <li className="mb-3">Mayonnaise</li>
-              <li className="mb-3">Syrups</li>
+              <li className="mb-3"><Link href='/product'>Woman</Link> </li>
+              <li className="mb-3"> <Link href='/product'>Man</Link></li>
+              <li className="mb-3"> <Link href='/product'>Kids</Link></li>
+              <li className="mb-3"> <Link href='/product'>Ice</Link></li>
+              <li className="mb-3"> <Link href='/product'> Racing</Link></li>
             </ul>
           </div>
           <div className="p-4">
             <h1 className="text-3xl mb-3 font-semibold">Quick Links</h1>
             <ul className="mb-5">
-              <li className="mb-3">About</li>
-              <li className="mb-3">Products</li>
-              <li className="mb-3">Recipes</li>
-              <li className="mb-3">Media</li>
-              <li className="mb-3">Blog</li>
-              <li className="mb-3">Contact Us</li>
-              <li className="mb-3">Product Catalogue</li>
-              <li className="mb-3">Bonheur Catalogue</li>
+              <li className="mb-3"><Link href='/about'>About</Link></li>
+              <li className="mb-3"><Link href='/product'>Products</Link></li>
+              <li className="mb-3"><Link href='/cart'>cart</Link></li>
+              <li className="mb-3"><Link href='/contact'>Contact Us</Link></li>
+          
+             
             </ul>
           </div>
           <div className="p-4">
@@ -71,30 +69,46 @@ function Footer() {
               And Stay Updated With Cremicas Innovations
             </span>
             <div className="flex flex-col sm:flex-row gap-4 mt-5">
-  <input
-    className="h-12 min-w-full sm:min-w-[12rem] rounded-lg border-orange-500 indent-4 text-orange-900 shadow-lg focus:outline-none focus:ring focus:ring-orange-600"
-    type="text"
-    placeholder="Designation"
-  />
-  <button className="h-12 min-w-full sm:min-w-[8rem] rounded-lg border-2 border-orange-600 bg-orange-500 text-emerald-50 shadow-lg hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-600">
-    Submit
-  </button>
-</div>
+              <input
+                className="h-12 min-w-full sm:min-w-[12rem] rounded-lg border-orange-500 indent-4 text-orange-900 shadow-lg focus:outline-none focus:ring focus:ring-orange-600"
+                type="text"
+                placeholder="Designation"
+              />
+              <button className="h-12 min-w-full sm:min-w-[8rem] rounded-lg border-2 border-orange-600 bg-orange-500 text-emerald-50 shadow-lg hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-600">
+                Submit
+              </button>
+            </div>
             <div className="my-4">
-                <h2 className="text-2xl font-semibold mb-4">Follow Us</h2>
-                <ul className="flex mb-5">
-                    <li className="mr-3 rounded-full p-2 flex justify-center items-center bg-orange-500 hover:bg-orange-400"><button className="text-white"><FaFacebookF /></button></li>
-                    <li className="mr-3 rounded-full p-2 flex justify-center items-center bg-orange-500 hover:bg-orange-400"><button className="text-white"><FaTwitter /></button></li>
-                    <li className="mr-3 rounded-full p-2 flex justify-center items-center bg-orange-500 hover:bg-orange-400"><button className="text-white"><FaInstagram  /></button></li>
-                </ul>
+              <h2 className="text-2xl font-semibold mb-4">Follow Us</h2>
+              <ul className="flex mb-5">
+                <li className="mr-3 rounded-full p-2 flex justify-center items-center bg-orange-500 hover:bg-orange-400">
+                  <button className="text-white">
+                    <FaFacebookF />
+                  </button>
+                </li>
+                <li className="mr-3 rounded-full p-2 flex justify-center items-center bg-orange-500 hover:bg-orange-400">
+                  <button className="text-white">
+                    <FaTwitter />
+                  </button>
+                </li>
+                <li className="mr-3 rounded-full p-2 flex justify-center items-center bg-orange-500 hover:bg-orange-400">
+                  <button className="text-white">
+                    <FaInstagram />
+                  </button>
+                </li>
+              </ul>
 
-                <p className="text-sm text-gray-500">Shipping & Return | Privacy Policy | Terms & Condition</p>
+              <p className="text-sm text-gray-500">
+                Shipping & Return | Privacy Policy | Terms & Condition
+              </p>
             </div>
           </div>
         </div>
-
       </footer>
-      <div className="bg-orange-500 text-center text-sm md:text-lg w-full text-white flex items-center p-2 justify-center">Copyright © 2023 Blockverse Food Industries Limited. All Rights Reserved.</div>
+      <div className="bg-orange-500 text-center text-sm md:text-lg w-full text-white flex items-center p-2 justify-center">
+        Copyright © 2023 Blockverse Food Industries Limited. All Rights
+        Reserved.
+      </div>
     </div>
   );
 }
